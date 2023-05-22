@@ -24,6 +24,7 @@
                 <td>{{$project->description }}</td>
                 <td>{{$project->link }}</td>
                 <td><a class="btn btn-primary" href="{{route('admin.projects.show',['project'=>$project->id])}}">Info</a></td>
+                <td><a class="btn btn-secondary" href="{{ route('admin.projects.edit',['project'=>$project->id]) }}">Modifica</a></td>
             </tr>      
     
         @endforeach

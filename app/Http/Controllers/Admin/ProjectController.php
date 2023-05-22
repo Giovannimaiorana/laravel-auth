@@ -62,7 +62,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+    
     }
 
     /**
@@ -74,7 +74,10 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        //
+        $request = $request->validated();
+        $project->update();
+
+        return redirect()->route('admin.show',['project'=>$project->id]);
     }
 
     /**
