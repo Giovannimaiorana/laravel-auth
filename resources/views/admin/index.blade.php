@@ -10,9 +10,9 @@
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
+        <th scope="col">Titolo</th>
+        <th scope="col">Descrizione</th>
+        <th scope="col">Link</th>
       </tr>
     </thead>
     <tbody>
@@ -23,7 +23,7 @@
                 <td>{{$project->title }}</td>
                 <td>{{$project->description }}</td>
                 <td>{{$project->link }}</td>
-                <td><a class="btn btn-primary" href="">modifica</a></td>
+                <td><a class="btn btn-primary" href="{{route('admin.projects.show',['project'=>$project->id])}}">Info</a></td>
             </tr>      
     
         @endforeach
