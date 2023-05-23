@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
   <div class="container mt-3 mb-3">
-    <a class="btn btn-primary" href="#">Dashboard</a>
+    <a class="btn btn-primary" href="{{Route('admin.projects.create')}}">Crea nuovo</a>
   </div>
 
   <table class="table">

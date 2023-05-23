@@ -3,21 +3,18 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Http\Requests\StoreProjectRequest;
+use App\Http\Requests\UpdateProjectRequest;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $projects = Project::all();
 
       return view('admin.index',compact('projects'));
-      //return view('admin.dashboard');
       
     }
 
@@ -28,7 +25,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+       return view('admin.create');
     }
 
     /**
@@ -37,9 +34,17 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProjectRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        $newProject = new Project();
+
+        $newProject->fill($data);
+
+        $newProject->save();
+
+        return redirect()->route('admin.projects.show',['project'=>$newProject->id]);
     }
 
     /**
@@ -62,7 +67,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-    
+        return view('admin.edit',compact('project'));
     }
 
     /**
@@ -77,7 +82,7 @@ class ProjectController extends Controller
         $request = $request->validated();
         $project->update();
 
-        return redirect()->route('admin.show',['project'=>$project->id]);
+        return redirect()->route('admin.index',['project'=>$project->id]);
     }
 
     /**
