@@ -23,8 +23,17 @@
                 <td>{{$project->title }}</td>
                 <td>{{$project->description }}</td>
                 <td>{{$project->link }}</td>
-                <td><a class="btn btn-primary" href="{{route('admin.projects.show',['project'=>$project->id])}}">Info</a></td>
-                <td><a class="btn btn-secondary" href="{{ route('admin.projects.edit',['project'=>$project->id]) }}">Modifica</a></td>
+                <td>
+                  <div class="my-2"><a class="btn btn-primary" href="{{route('admin.projects.show',['project'=>$project->id])}}">Info</a></div>
+                  <div class="my-2"><a class="btn btn-secondary" href="{{ route('admin.projects.edit',['project'=>$project->id]) }}">Modifica</a></div>
+                  <form  class="my-2" action="{{route('admin.projects.destroy',['project'=>$project->id])}}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-danger">Elimina</button>
+                </form>
+
+                </td>
+               
             </tr>      
     
         @endforeach
